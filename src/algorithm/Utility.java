@@ -5,7 +5,7 @@ import java.util.Queue;
 import java.util.Stack;
 
 public class Utility {
-	public static double rotateAngle = 1;
+	public static double rotateAngle = 30;
 	
 	public static String makeString(int levels, String s) {
 		String next = "";
@@ -39,13 +39,13 @@ public class Utility {
 			c = s.charAt(i);
 			switch(c) {
 			case('F'):
-				currentHead = currentHead.addNode(currentNodeId++, angle);
+				currentHead = currentHead.addNode(currentNodeId++, currentHead.angle+angle);
 				break;
 			case('-'):
-				angle -= rotateAngle;
+				angle -= Math.toRadians(rotateAngle);
 				break;
 			case('+'):
-				angle += rotateAngle;
+				angle += Math.toRadians(rotateAngle);
 				break;
 			case('['):
 				stack.push(currentHead);
