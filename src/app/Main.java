@@ -1,5 +1,7 @@
 package app;
 
+import algorithm.Node;
+import algorithm.Utility;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
@@ -22,12 +24,19 @@ public class Main extends Application {
 		Pane root = new Pane();
 		Scene scene = new Scene(root, canvas_width, canvas_height);
 		
-		
 		// generate the rule string
+		String rule = Utility.makeString(2, "X");
 		
-		// convert string to a tree
+		// test
+		System.out.println(rule);
 		
-		// draw by BFS the tree with thread
+		// convert the rule string to a thread tree
+		Node threadTreeRoot = Utility.stringToThreadTree(rule);
+		
+		//test
+		Utility.bfsTraversal(threadTreeRoot);
+		
+		// draw by BFS the thread tree
 		
 		
 		primaryStage.setScene(scene);
