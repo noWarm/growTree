@@ -46,11 +46,11 @@ public class Node {
 				currentX += lengthChange * Math.sin(angle);
 				currentY -= lengthChange * Math.cos(angle);
 			
-//				try {
-//					Thread.sleep(30);
-//				} catch (InterruptedException e) {
-//					e.printStackTrace();
-//				}
+				try {
+					Thread.sleep(10);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
 				timeCount += 0.05;
 			}
 			

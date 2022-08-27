@@ -19,12 +19,16 @@ public class Main extends Application {
 		int canvas_width = 1200;
 		int canvas_height = 1000;
 		
-		double branchLength = 1;
+		double groundOffset = 50;
+		double branchLength = 0.8;
 		
 		Canvas canvas = new Canvas(canvas_width, canvas_height);
 		GraphicsContext gc = canvas.getGraphicsContext2D();
 		Pane root = new Pane();
 		root.getChildren().add(canvas);
+		
+		gc.setFill(Color.BLACK);
+		gc.fillRect(0, canvas_height-groundOffset, canvas_width, canvas_height);
 		
 		// generate the rule string
 		String rule = Utility.makeString(6, "X");
@@ -37,7 +41,7 @@ public class Main extends Application {
 		//////	Utility.bfsTraversal(threadTreeRoot);
 		
 		// draw by BFS the thread tree
-		threadTreeRoot.draw(gc, canvas_width/3.5, canvas_height + 10, branchLength, Color.BLACK);
+		threadTreeRoot.draw(gc, canvas_width/5, canvas_height - groundOffset, branchLength, Color.BLACK);
 		
 
 		Scene scene = new Scene(root, canvas_width, canvas_height);
