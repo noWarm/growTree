@@ -16,8 +16,8 @@ public class Main extends Application {
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		int canvas_width = 800;
-		int canvas_height = 800;
+		int canvas_width = 1200;
+		int canvas_height = 1000;
 		
 		double branchLength = 1;
 		
@@ -27,15 +27,17 @@ public class Main extends Application {
 		root.getChildren().add(canvas);
 		
 		// generate the rule string
-		String rule = Utility.makeString(10, "X");
-		//////	System.out.println(rule);
+		String rule = Utility.makeString(6, "X");
+		System.out.println(rule);
+		
+//		String rule = "F[F[F[F]-F]+F]+F";
 		
 		// convert the rule string to a thread tree
 		Node threadTreeRoot = Utility.stringToThreadTree(rule);
 		//////	Utility.bfsTraversal(threadTreeRoot);
 		
 		// draw by BFS the thread tree
-		threadTreeRoot.draw(gc, canvas_width/2, canvas_height + 300, branchLength);
+		threadTreeRoot.draw(gc, canvas_width/3.5, canvas_height + 10, branchLength, Color.BLACK);
 		
 
 		Scene scene = new Scene(root, canvas_width, canvas_height);

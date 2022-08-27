@@ -5,7 +5,7 @@ import java.util.Queue;
 import java.util.Stack;
 
 public class Utility {
-	public static double rotateAngle = 30;
+	public static double rotateAngle = Math.toRadians(15);
 	
 	public static String makeString(int levels, String s) {
 		String next = "";
@@ -29,36 +29,42 @@ public class Utility {
 	// each 'F' will be represented in a Node
 	public static Node stringToThreadTree(String s) {
 		char c;
-		double angle = 0.0;
+		double currentAngle = 0.2;
 		int currentNodeId = 0;
-		Stack<Node> stack = new Stack<Node>();
-		Node root = new Node(currentNodeId++, angle);			// represents s[0]
+		Stack<MemorizedNode> stack = new Stack<MemorizedNode>();
+		Node root = new Node(currentNodeId++, currentAngle);			// represents s[0]
 		Node currentHead = root;
+		MemorizedNode popNode;
 				
 		for (int i = 1; i < s.length(); i++) {	// begins at s[1] 
 			c = s.charAt(i);
 			switch(c) {
 			case('F'):
-				currentHead = currentHead.addNode(currentNodeId++, currentHead.angle+angle);
+				currentHead = currentHead.addNode(currentNodeId++, currentAngle);
 				break;
 			case('-'):
-				angle -= Math.toRadians(rotateAngle);
+				currentAngle -= rotateAngle;
 				break;
 			case('+'):
-				angle += Math.toRadians(rotateAngle);
+				currentAngle += rotateAngle;
 				break;
 			case('['):
-				stack.push(currentHead);
+				stack.push(new MemorizedNode(currentHead, currentHead.angle + currentAngle));
 				break;
 			case(']'):
-				currentHead = stack.pop();
+				popNode = stack.pop();
+				currentHead = popNode.parent;
+				currentAngle = popNode.angle;
 				break;
 			default:
 				break;
 			}
+			System.out.format("i = %2d c= %c angle = %f ch_angle = %f\n", i, c, currentAngle, currentHead.angle);
 		}
+		System.out.println("---------");
 		return root;
 	}
+
 	
 	public static void bfsTraversal(Node root) {
 		Queue<Node> queue = new LinkedList<>();
