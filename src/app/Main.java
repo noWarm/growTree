@@ -20,7 +20,7 @@ public class Main extends Application {
 		int canvas_height = 1000;
 		
 		double groundOffset = 50;
-		double branchLength = 0.8;
+		double branchLength = 0.3;
 		
 		Canvas canvas = new Canvas(canvas_width, canvas_height);
 		GraphicsContext gc = canvas.getGraphicsContext2D();

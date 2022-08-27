@@ -28,7 +28,7 @@ public class Node {
 	
 	public void draw(GraphicsContext gc, double x, double y, double len, Color color) {
 		double lengthChange = 0.3;
-		double branchRadius = 1;
+		double branchRadius = 0.7;
 		
 		Thread thread = new Thread(() -> {
 		System.out.format("id:%3d\tangle:%f\n",id, angle);
