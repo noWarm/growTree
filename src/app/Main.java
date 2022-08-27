@@ -2,7 +2,7 @@ package app;
 
 import algorithm.Node;
 import algorithm.Utility;
-import controller.MainController;
+import controller.GUIController;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
@@ -16,36 +16,7 @@ public class Main extends Application {
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		int canvas_width = 1200;
-		int canvas_height = 1000;
-		
-		double groundOffset = 250;
-		double branchLength = 0.3;
-		
-		Canvas canvas = new Canvas(canvas_width, canvas_height);
-		GraphicsContext gc = canvas.getGraphicsContext2D();
-		Pane root = new Pane();
-		root.getChildren().add(canvas);
-		
-		gc.setFill(Color.BLACK);
-		gc.fillRect(0, canvas_height-groundOffset, canvas_width, canvas_height);
-		
-		// generate the rule string
-		String rule = Utility.makeString(6, "X");
-		System.out.println(rule);
-		
-//		String rule = "F[F[F[F]-F]+F]+F";
-		
-		// convert the rule string to a thread tree
-		Node threadTreeRoot = Utility.stringToThreadTree(rule);
-		//////	Utility.bfsTraversal(threadTreeRoot);
-		
-		// draw by BFS the thread tree
-		threadTreeRoot.draw(gc, canvas_width/1.4, canvas_height - groundOffset, branchLength, Color.BLACK);
-		
-
-		Scene scene = new Scene(root, canvas_width, canvas_height);
-		primaryStage.setScene(scene);
+		GUIController.setUpStage(primaryStage);
 		primaryStage.show();
 	}
 

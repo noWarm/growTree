@@ -5,7 +5,6 @@ import java.util.Queue;
 import java.util.Stack;
 
 public class Utility {
-	public static double rotateAngle = Math.toRadians(15);
 	
 	public static String makeString(int levels, String s) {
 		String next = "";
@@ -27,9 +26,9 @@ public class Utility {
 	}
 
 	// each 'F' will be represented in a Node
-	public static Node stringToThreadTree(String s) {
+	public static Node stringToThreadTree(String s, double rotateAngle, double initAngle) {
 		char c;
-		double currentAngle = 0.2;
+		double currentAngle = initAngle;
 		int currentNodeId = 0;
 		Stack<MemorizedNode> stack = new Stack<MemorizedNode>();
 		Node root = new Node(currentNodeId++, currentAngle);			// represents s[0]
@@ -43,13 +42,13 @@ public class Utility {
 				currentHead = currentHead.addNode(currentNodeId++, currentAngle);
 				break;
 			case('-'):
-				currentAngle -= rotateAngle;
-				break;
-			case('+'):
 				currentAngle += rotateAngle;
 				break;
+			case('+'):
+				currentAngle -= rotateAngle;
+				break;
 			case('['):
-				stack.push(new MemorizedNode(currentHead, currentHead.angle + currentAngle));
+				stack.push(new MemorizedNode(currentHead, currentAngle));
 				break;
 			case(']'):
 				popNode = stack.pop();
@@ -61,7 +60,7 @@ public class Utility {
 			}
 			System.out.format("i = %2d c= %c angle = %f ch_angle = %f\n", i, c, currentAngle, currentHead.angle);
 		}
-		System.out.println("---------");
+//		System.out.println("---------");
 		return root;
 	}
 
@@ -77,4 +76,10 @@ public class Utility {
 			}
 		}
 	}
+	
+	public static int getRandomInt(double min, double max) {
+		return  (int)Math.floor(Math.random()*(max-min+1)+min);
+	}
+	
+	
 }
