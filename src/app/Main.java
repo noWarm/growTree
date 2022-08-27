@@ -19,7 +19,7 @@ public class Main extends Application {
 		int canvas_width = 1200;
 		int canvas_height = 1000;
 		
-		double groundOffset = 50;
+		double groundOffset = 250;
 		double branchLength = 0.3;
 		
 		Canvas canvas = new Canvas(canvas_width, canvas_height);
@@ -41,7 +41,7 @@ public class Main extends Application {
 		//////	Utility.bfsTraversal(threadTreeRoot);
 		
 		// draw by BFS the thread tree
-		threadTreeRoot.draw(gc, canvas_width/5, canvas_height - groundOffset, branchLength, Color.BLACK);
+		threadTreeRoot.draw(gc, canvas_width/1.4, canvas_height - groundOffset, branchLength, Color.BLACK);
 		
 
 		Scene scene = new Scene(root, canvas_width, canvas_height);
